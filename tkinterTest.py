@@ -19,6 +19,12 @@ def mainMenu():
 
 
 def weekOne():
+    
+    def addToList():
+        newItem = E1.get()
+        playList.append(newItem)
+        E1.delete(0, END)
+    
     clearWindow()
     #This is a label widget
     L1 = Label(top, text = "Playlist")
@@ -40,34 +46,48 @@ def weekOne():
     B3 = Button(text = " Export List ", bg = "#5defb5", command = exportList)
     B3.grid(column = 0, row = 4)
 
+    BMenu = Button(text = "Main Menu", bg = "red", command = mainMenu)
+    BMenu.grid(column = 1, row = 3)
+
 def weekTwo():
     clearWindow()
+    L1W2 = Label(top, text = "  Dice Roller Program  ")
+    L1W2.grid(column = 1, row = 0)
 
+    L2W2 = Label(top, text = "  How many sides?  ")
+    L2W2.grid(column = 0, row = 2)
+
+    L3W2 = Label(top, text = "  How many rolls?  ")
+    L3W2.grid(column = 2, row = 2)
+
+    E1W2 = Entry(top, bd = 5)
+    E1W2.grid(column = 0, row = 3)
+
+    E2W2 = Entry(top, bd = 5)
+    E2W2.grid(column = 2, row = 3)
+
+    B1W2 = Button(text = " Roll ", bg = "#5fe42b")
+    B1W2.grid(column = 1, row = 5)
+
+    B2W2 = Button(text = " Exit ", bg = "red")
+    B2W2.grid(column = 1, row = 6)
     
 def weekThree():
     clearWindow()
-
 
 def results():
     results = E1.get()
     print(results)
     print(type(results))
 
-def addToList():
-    newItem = E1.get()
-    playList.append(newItem)
-    E1.delete(0, END)
-
 def clearWindow():
     for widgets in top.winfo_children():
         widgets.destroy()
-
 
 def exportList():
     with open('test.txt', 'w') as f:
         for item in playList:
             f.write("%s/n" % item)
-
 
 if __name__ == "__main__":
     mainMenu()
