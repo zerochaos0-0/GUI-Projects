@@ -1,7 +1,12 @@
+#MAKE SURE TO ADD TIME SLEEPS BEFORE SUBMITTING FINAL CODE!!!!!
 from tkinter import *
+import random
 
 top = Tk()
 playList = []
+myRolls = []
+numberOfRolls = 0
+dieType = 0
 
 def mainMenu():
     clearWindow()
@@ -50,6 +55,23 @@ def weekOne():
     BMenu.grid(column = 1, row = 3)
 
 def weekTwo():
+    def rollDice():
+        #update variable data
+        dieType = E1W2.get()
+        numberOfRolls = E2W2.get()
+        #clear window after pulling entry data
+        clearWindow()
+        #calculate dice rolls
+        for x in range(0, int(numberOfRolls)):
+                myRolls.append(random.randint(1, int(dieType)))
+        #display dice rolls and present an exit button
+        L4W2 = Label(top, text = "Here are your rolls!")
+        L4W2.grid(column = 0, row = 1)
+        L5W2 = Label(top, text = "{}".format(myRolls))
+        L5W2.grid(column = 0, row = 3)
+        B2W2 = Button(text = " Main Menu ", bg = "red", command = mainMenu)
+        B2W2.grid(column = 1, row = 2)
+    
     clearWindow()
     L1W2 = Label(top, text = "  Dice Roller Program  ")
     L1W2.grid(column = 1, row = 0)
@@ -66,11 +88,9 @@ def weekTwo():
     E2W2 = Entry(top, bd = 5)
     E2W2.grid(column = 2, row = 3)
 
-    B1W2 = Button(text = " Roll ", bg = "#5fe42b")
+    B1W2 = Button(text = " Roll ", bg = "#5fe42b", command = rollDice)
     B1W2.grid(column = 1, row = 5)
 
-    B2W2 = Button(text = " Exit ", bg = "red")
-    B2W2.grid(column = 1, row = 6)
     
 def weekThree():
     clearWindow()
